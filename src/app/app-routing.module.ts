@@ -2,20 +2,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'listContactos', pathMatch: 'full' },
   {
-    path: 'components/listContactos',
+    path: 'listContactos',
     loadChildren: () =>
       import('./components/list-contactos/list-contactos.module').then(
         (m) => m.ListContactosModule
       ),
   },
   {
-    path: 'components/addEditContactos',
+    path: 'addEditContactos',
     loadChildren: () =>
       import('./components/add-edit-contactos/add-edit-contactos.module').then(
         (m) => m.AddEditContactosModule
       ),
   },
+  { path: '**', redirectTo: 'listContactos', pathMatch: 'full' },
 ];
 
 @NgModule({

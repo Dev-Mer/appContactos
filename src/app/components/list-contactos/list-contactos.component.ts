@@ -4,6 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ContactoService } from 'src/app/services/contacto.service';
 import { Contacto } from 'src/app/models/contactos';
+import { MatDialog } from '@angular/material/dialog';
+import { MensajeConfirmacionComponent } from '../shared/mensaje-confirmacion/mensaje-confirmacion.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -20,12 +23,12 @@ export class ListContactosComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private contactoSvc:ContactoService) { }
+  constructor(private contactoSvc:ContactoService,
+              public dialog: MatDialog,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.cargarContactos();
-    setTimeout(() => this.dataSource.paginator = this.paginator);
-    setTimeout(() => this.dataSource.sort = this.sort);
   }
 
   // Aplicando filtro a listado
@@ -40,13 +43,28 @@ export class ListContactosComponent implements OnInit {
     this.listContactos = this.contactoSvc.getContactos();
     this.dataSource = new MatTableDataSource(this.listContactos);
     console.log(this.listContactos);
+    setTimeout(() => this.dataSource.paginator = this.paginator);
+    setTimeout(() => this.dataSource.sort = this.sort);
   }
   // Inicializando el listado de contacto
   
   // Eliminando Contacto
   eliminarContacto(index:number):void{
-    this.contactoSvc.deleteContacto(index);
-    this.cargarContactos();
+    const dialogRef = this.dialog.open(MensajeConfirmacionComponent, {
+      width: '300px',
+      data: {mensaje: "Seguro que desea eliminar el Contacto?"}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === "aceptar") {
+        this.contactoSvc.deleteContacto(index);
+        this.cargarContactos();
+        this._snackBar.open("Se ha eliminado el contacto exitosamente.","", {
+          duration: 4000
+        });
+      }
+    });
+
   }
   // Eliminando Contacto
 

@@ -11,10 +11,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 // Angular Material
 
 @NgModule({
-  declarations: [ListContactosComponent],
+  declarations: [
+    ListContactosComponent,
+  ],
   imports: [
     CommonModule,
     ListContactosRoutingModule,
@@ -24,6 +27,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-  ]
+    MatButtonModule,
+  ],
 })
 export class ListContactosModule { }

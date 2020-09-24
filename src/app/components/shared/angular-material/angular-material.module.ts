@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 //Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 //Angular Material
 
 
@@ -12,9 +15,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [
     CommonModule,
     MatToolbarModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatToolbarModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
   ]
 })
 export class AngularMaterialModule { }
