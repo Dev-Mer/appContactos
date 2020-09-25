@@ -25,3 +25,45 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Solicitado
+
+1) Hacer una pequeña aplicación en Angular que cargue y permita ver una lista de contactos, que se pueda agregar editar y eliminar cada uno de los contactos, así como guardarlos en el local Storage o cancelar las modificaciones hechas.
+
+2) Cada contacto puede tener múltiples números telefónicos
+
+3) Usar formularios reactivos
+
+4)  Que la lista de contactos inicial se pueda cargar desde un archivo JSON, que simule la API.
+
+5) Usar angular material.
+
+6) NO OBLIGATORIO. Puntos extra si se utiliza lazy loading
+
+7) NO OBLIGATORIO. Puntos extra si se utiliza nested router para las opciones de créate/edit
+
+CAMPOS DE LA LISTA DE CONTACTOS
+
+. Nombre (requerido, 20 caracteres máximo, no números)
+
+. Correo (requerido, validación de email)
+
+. Información de trabajo (no validación)
+
+. Numero (requerido al menos 1)
+
+## Puntos Realizado
+
+1)Hecho
+
+2)Hecho
+
+3)Hecho
+
+4)Puede ser cargada de una variable que posea un Json, pero no de un archivo.
+
+5)Hecho
+
+6)Hecho
+
+7)No Nested Routes, pero si reutilizar el componente (agregar y editar en el mismo componente)
