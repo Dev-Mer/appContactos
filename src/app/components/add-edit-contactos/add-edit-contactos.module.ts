@@ -7,6 +7,8 @@ import { AddEditContactosComponent } from './add-edit-contactos.component';
 
 // Angular Material Imports
 import { MatInputModule } from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 // Angular Material Imports
 
 @NgModule({
@@ -16,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
     AddEditContactosRoutingModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatListModule,
+    MatIconModule,
   ]
 })
 export class AddEditContactosModule { }

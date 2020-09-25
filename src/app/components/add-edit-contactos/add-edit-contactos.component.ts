@@ -13,7 +13,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AddEditContactosComponent implements OnInit {
 
   posContacto: any;
-  accion = "Crear"
+  accion = "Crear";
+  telefonos: string[] = [];
+  isEditar: boolean = false;
+  indexTel: number;
 
   contactoForm: FormGroup;
 
@@ -70,6 +73,7 @@ export class AddEditContactosComponent implements OnInit {
 
   // Editando contacto
   editarContacto(contacto: Contacto):void {
+    contacto.numeroTel = this.telefonos;
     this.contactoSvc.editarContacto(contacto, this.posContacto);
     this.route.navigate(['/contactos'])
     this._snackBar.open("Se ha editado el contacto exitosamente.","", {
@@ -81,14 +85,41 @@ export class AddEditContactosComponent implements OnInit {
   // Obteniendo Contacto por Pos/ID para editar
   aEditar():void {
     const contacto: Contacto = this.contactoSvc.getContactoByPos(this.posContacto);
+    this.telefonos = contacto.numeroTel;
     console.log(contacto)
     this.contactoForm.patchValue({
       nombreCompleto: contacto.nombre,
       correo: contacto.correo,
       workInfo: contacto.informacionDeTrabajo,
-      telefono: contacto.numeroTel.toString(),
+      telefono: this.telefonos[0]//contacto.numeroTel.toString(),
     })
   }
   // Obteniendo Contacto por Pos/ID para editar
+
+  // Eliminando numero de telefono
+  eliminarTelefono(index: number):void {
+    this.contactoSvc.eliminarTelefono(this.posContacto, index);
+    this.aEditar();
+  }
+  // Eliminando numero de telefono
+
+  // Preparando telefono para su edicion
+  aEditarTelefono(index: number):void {
+    this.contactoForm.patchValue({
+      telefono: this.telefonos[index]
+    });
+    this.isEditar = true;
+    this.indexTel = index;
+  }
+  // Preparando telefono para su edicion
+
+  // Editando telefono de cliente en especifico
+  editarTelefono():void {
+    const newTel = this.contactoForm.get('telefono').value;
+    this.contactoSvc.editarTelefono(this.posContacto, this.indexTel, newTel);
+    this.isEditar = false;
+    this.aEditar();
+  }
+  // Editando telefono de cliente en especifico
 
 }

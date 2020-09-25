@@ -41,4 +41,14 @@ export class ContactoService {
     this.listContactos[index].informacionDeTrabajo = contacto.informacionDeTrabajo;
     this.listContactos[index].numeroTel = contacto.numeroTel;
   }
+
+  // Funcion para eliminar un telefono de un Contacto
+  eliminarTelefono(posContacto: number, index: number): void {
+    this.listContactos[posContacto].numeroTel.splice(index, 1);
+  }
+
+  // Funcion para editar un telefono de un Contacto
+  editarTelefono(posContacto: number, posTel: number, newTel: string):void {
+    this.listContactos[posContacto].numeroTel[posTel] = newTel;
+  }
 }
