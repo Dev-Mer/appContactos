@@ -15,6 +15,7 @@ export class AddEditContactosComponent implements OnInit {
   posContacto: any;
   accion = "Crear";
   telefonos: string[] = [];
+  isEditarTel: boolean = false;
   isEditar: boolean = false;
   indexTel: number;
 
@@ -37,7 +38,8 @@ export class AddEditContactosComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.posContacto !== undefined) {
-      this.accion = "Editar"
+      this.accion = "Editar";
+      this.isEditar = true;
       this.aEditar();
     }
   }
@@ -108,7 +110,7 @@ export class AddEditContactosComponent implements OnInit {
     this.contactoForm.patchValue({
       telefono: this.telefonos[index]
     });
-    this.isEditar = true;
+    this.isEditarTel = true;
     this.indexTel = index;
   }
   // Preparando telefono para su edicion
@@ -117,9 +119,17 @@ export class AddEditContactosComponent implements OnInit {
   editarTelefono():void {
     const newTel = this.contactoForm.get('telefono').value;
     this.contactoSvc.editarTelefono(this.posContacto, this.indexTel, newTel);
-    this.isEditar = false;
+    this.isEditarTel = false;
     this.aEditar();
   }
   // Editando telefono de cliente en especifico
+
+  // Añadiendo telefono a contacto en especifico
+  agregarTelefono():void {
+    const newTel = this.contactoForm.get('telefono').value;
+    this.contactoSvc.agregarTelefono(this.posContacto, newTel);
+    this.aEditar();
+  }
+  // Añadiendo telefono a contacto en especifico
 
 }

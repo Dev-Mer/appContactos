@@ -104,11 +104,16 @@
                     />
                   </mat-form-field>
               </div>
-              <div class="col-lg-2 pointer" style="margin-top: 15px;" *ngIf="isEditar">
-                  <a class="text-success" (click)="editarTelefono()">
+              <div class="col-lg-2" style="margin-top: 15px;" *ngIf="isEditarTel">
+                  <a class="text-success pointer" (click)="editarTelefono()">
                       <mat-icon>edit</mat-icon>
                   </a>
               </div>
+              <div class="col-lg-2" style="margin-top: 15px;" *ngIf="isEditar && !isEditarTel">
+                <a class="text-success pointer" (click)="agregarTelefono()">
+                    <mat-icon>add</mat-icon>
+                </a>
+            </div>
           </div>
         <div
           *ngIf="
@@ -150,7 +155,7 @@
     </form>
   </div>
   <div class="col-lg-4 offset-2">
-    <mat-list>
+    <mat-list *ngIf="isEditar; else noEdit">
       <div mat-subheader>Telefonos</div>
       <mat-list-item *ngFor="let tel of telefonos; let i = index">
         <mat-icon
@@ -170,5 +175,8 @@
         <div mat-line>{{ tel }}</div>
       </mat-list-item>
     </mat-list>
+    <ng-template #noEdit>
+      <img src="https://pixabay.com/get/57e6d7414f53ab14f6da8c7dda353678153fd7ec5452774b_1280.png" alt="Formulario" style="width: 90%; height: 90%;">
+    </ng-template>
   </div>
 </div>
